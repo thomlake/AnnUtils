@@ -48,7 +48,7 @@ def bnot(x, on = ON, off = OFF):
 	:type on: any
 	:type off: any
 	"""
-	if x is on:
+	if x == on:
 		return off
 	return on
 
@@ -119,9 +119,9 @@ def degrade(bits, p_change = 0.2, on = ON, off = OFF):
 	:type off: any
 	"""
 	if type(bits) is numpy.ndarray:
-		newbits = numpy.array([pflip(x, p_change, on, off) if x is on else x for x in bits])
+		newbits = numpy.array([pflip(x, p_change, on, off) if x == on else x for x in bits])
 	elif type(bits) is list:
-		newbits = [pflip(x, p_change, on, off) if x is on else x for x in bits]
+		newbits = [pflip(x, p_change, on, off) if x == on else x for x in bits]
 	else:
 		raise TypeError('type(bits) must be list or numpy.ndarray')
 	return newbits
@@ -140,7 +140,7 @@ def bitstr(bits, on = ON, off = OFF, onsymbol = '+', offsymbol = '-'):
 	:type onsymbol: chr
 	:type offsymbol: chr
 	"""
-	return ''.join([onsymbol if x is on else offsymbol for x in bits])
+	return ''.join([onsymbol if x == on else offsymbol for x in bits])
 
 class RandomRepresentation(object):
 	"""class for handling data representations as random
@@ -208,4 +208,11 @@ class RandomRepresentation(object):
 			self.io[key] = val
 			self.oi[bitstr(val, self.on, self.off)] = key
 
-
+if __name__ == '__main__':
+	# test
+	sigma = 'abcdefg'
+	n = 10
+	p_on = 0.3
+	#a = gen(n, p_on, np = True)
+	#print a, bitstr(a)
+	rr = RandomRepresentation(n = n, p_on = p_on, alphabet = sigma, np = True)

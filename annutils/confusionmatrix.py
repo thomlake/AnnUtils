@@ -79,7 +79,7 @@ class ConfusionMatrix:
 		"""
 		return sum([sum(self.table[i]) for i in range(len(self.table))])
 
-def diagonal(s:elf):
+	def diagonal(self):
 		"""Calculate the number of entires along the diagonal of the matrix.
 
 		:rtype: float

@@ -8,6 +8,6 @@ setup(
 	packages=['annutils'],
 	license='LICENSE.txt',
 	description='neural Network utility functions.',
-	long_description=open('README.txt').read(),
+	long_description=open('README.rst').read(),
 )
 
