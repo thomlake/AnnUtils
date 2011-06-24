@@ -37,6 +37,13 @@ class PixelImageDrawer(object):
 		d = npcolorscale(norm255(x, minval, maxval), color)
 		self.data.append(d)
 
+	def addrowlist(self, l, color = 'grey', minval = None, maxval = None):
+		minval = self.minval if minval is None else minval
+		maxval = self.maxval if maxval is None else maxval
+		for row in l:
+			d = npcolorscale(norm255(row, minval, maxval), color)
+			self.data.append(d)
+	
 	def draw(self, fname):
 		drawpil(fname, np.vstack(self.data))
 
